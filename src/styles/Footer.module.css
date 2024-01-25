@@ -1,0 +1,51 @@
+.wrapper{
+    display:flex;
+    justify-content: space-around;
+    height: fit-content;
+    padding: 30px;
+    background-color: black;
+    color: white;
+    margin-top: 10px;
+}
+.list{
+
+}
+.listItem{
+    list-style-type: none;
+    cursor: pointer;
+    margin: 10px 0px;
+}
+.listItem:hover{
+    color: rgb(152, 152, 248);
+}
+.listWrapper{
+    display: flex;
+    flex-direction: column;
+}
+.socialBtn{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    background-color: rgb(64, 11, 11);
+    margin: 0px 10px;
+}
+.socialBtn:hover{
+    background-color: #fff;
+    color: black;
+}
+.bottomFooter{
+    height: 80px;
+    background-color: rgb(10, 10, 10);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: gray;
+}
+.footerPayementImages{
+    display: flex;
+    width: 12%;
+    justify-content: space-around;
+    cursor: pointer;
+}

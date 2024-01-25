@@ -1,0 +1,20 @@
+.wrapper{
+    display: flex;
+}
+.card{
+    margin: 15px 0px;
+}
+#pageCard{
+    width: 14rem;
+    margin: 10px 8px;
+}
+.emptyInformation{
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.categoryProductImage{
+    cursor: pointer;
+}

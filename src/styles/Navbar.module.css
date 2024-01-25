@@ -1,0 +1,24 @@
+#container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fff;
+  padding: 20px;
+}
+.nav {
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.logo{
+  margin: 0px 10px;
+}
+.search{
+  background-color: rgb(184, 181, 181);
+  color: white;
+}
+.search:hover{
+  background-color: rgb(74, 73, 73);
+  color: #fff;
+}
