@@ -1,0 +1,91 @@
+.like {
+  color: rgb(223, 127, 127);
+  cursor: pointer;
+  font-size: 26px;
+  margin: 5px;
+}
+#pageCard {
+  width: 14rem;
+  margin: 10px 20px;
+}
+#pageCard:hover {
+  transform: scale(1.05);
+}
+.pageWraper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.pageTitleContainer {
+  display: flex;
+  padding: 25px;
+}
+.resgiterPopUp{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image {
+  padding: 10px;
+  object-fit: contain;
+}
+.cardContent{
+  display: flex;
+  justify-content: center;
+  margin: 10px 0px;
+  align-items: center;
+}
+.productName{
+  font-size: 18px;
+}
+@media screen and (max-width: 768px) {
+    .pageWraper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .cardContent {
+        margin: 2px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .productName {
+        font-size: 12px;
+    }
+  }
+@media screen and (max-width: 768px) {
+  #pageCard {
+    width: 38%;
+    padding: 0px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .imageWrapper {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .image {
+    object-fit: contain;
+    height: 150px;
+    width: 100px;
+  }
+}
+@media screen and (max-width: 768px) {
+    .like {
+        height: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .title {
+        font-size: 16px;
+    }
+  }

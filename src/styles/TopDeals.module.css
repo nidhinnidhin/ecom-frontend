@@ -15,9 +15,11 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 .card{
     margin: 15px 0px;
+    width: 210px;
 }
 .nextBtnWrapper{
     width: 100%;

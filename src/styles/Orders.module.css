@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper{
+    margin: 50px 0px;
+    width: 90%;
+}
+.status{
+    color: green;
+}
+.titleWrapper{
+    display: flex;
+    justify-content: center;
+}
+.title{
+    font-size: 20px;
+    margin-top: 10px;
+}
+.RegisterPopUp{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.image{
+    object-fit: contain;
+}

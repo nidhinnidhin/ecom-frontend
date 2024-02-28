@@ -10,22 +10,54 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useState, useEffect } from "react";
+import CustomSnackbar from "../customSnackbar";
+import { useRouter } from "next/router";
+import { fetchCartCount } from "@/utils/cartUtils";
+import { useDispatch } from "react-redux";
+import Rating from "@mui/material/Rating";
 
 export default function FashionProductDetail({ products }) {
+  const dispatch = useDispatch();
   console.log("products", products);
   const [size, setSize] = useState("");
   const [cart, setCart] = useState([]);
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedVarient, setSelectedVarient] = useState(0);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+  const [selectedColorBtn, setselectedColorBtn] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
+  
+  
+  const router = useRouter();
+  const { variantId, typeId } = router.query;
+  console.log(variantId, typeId);
+  
+  useEffect(() => {
+    if (variantId) {
+      setSelectedVarient(variantId);
+    }
+    if (typeId) {
+      setSelectedColor(typeId);
+      setselectedColorBtn(typeId);
+    }
+  }, [variantId, typeId]);
+  
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackbarOpen(false);
+  };
 
   const handleChange = (event) => {
     setSize(event.target.value);
-    // console.log(event.target.value);
   };
 
   const addProductToCart = (id, products) => {
-    let varientid = products.varients[selectedVarient].id
-    let typeid = products.varients[selectedVarient].types[selectedColor].id
+    let varientid = selectedVarient
+    let typeid = selectedColor
     axios
       .post(
         "http://localhost:8000/cart/",
@@ -33,7 +65,7 @@ export default function FashionProductDetail({ products }) {
           product: id,
           count: 1,
           varient: varientid,
-          types: typeid
+          types: typeid,
         },
         {
           headers: {
@@ -44,21 +76,36 @@ export default function FashionProductDetail({ products }) {
       )
       .then(() => {
         console.log("stored");
+        dispatch(fetchCartCount());
+        setSnackbarSeverity("success");
+        setSnackbarMessage("Product added to cart.");
+        setSnackbarOpen(true);
       })
       .catch((err) => {
         console.log(err.response);
+        setSnackbarSeverity("error");
+        setSnackbarMessage("Login, if you are not loged in!");
+        setSnackbarOpen(true);
       });
   };
   const addToWhishlist = (id) => {
-    let varientid = products.varients[selectedVarient].id
-    let typeid = products.varients[selectedVarient].types[selectedColor].id
+    let varientid = selectedVarient
+    let typeid = selectedColor
+    const accessToken = localStorage.getItem("access_token");
+    if(!accessToken){
+      setSnackbarSeverity("error");
+      setSnackbarMessage("Login, if you are not loged in!");
+      setSnackbarOpen(true);
+    }
+    console.log(varientid);
+    console.log(typeid);
     axios
       .post(
         "http://localhost:8000/whishlist/",
         {
           product: id,
           varient: varientid,
-          types: typeid
+          types: typeid,
         },
         {
           headers: {
@@ -69,94 +116,156 @@ export default function FashionProductDetail({ products }) {
       )
       .then(() => {
         console.log("stored");
+        setSnackbarSeverity("success");
+        setSnackbarMessage("Product added to whishlist.");
+        setSnackbarOpen(true);
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log(err.response.data);
+        setSnackbarSeverity("error");
+        setSnackbarMessage(err.response.data);
+        setSnackbarOpen(true);
       });
-  }
-  const productUpdateSizeWise = (index1, index2) => {
-    setSelectedVarient(index1)
-    setSelectedColor(index2)
-  }
-  const productUpdateColorWise = (index1, index2) => {
-    setSelectedVarient(index1)
-    setSelectedColor(index2)
-  }
+  };
+  const productUpdateSizeWise = (varientId, typeId, image) => {
+    setSelectedVarient(varientId);
+    setSelectedColor(typeId);
+    setSelectedImage(image);
+  };
+  const productUpdateColorWise = (varientId, typeId, image) => {
+    setSelectedVarient(varientId);
+    setSelectedColor(typeId);
+    setSelectedImage(image);
+    setselectedColorBtn(varientId);
+  };
+  
 
   return (
     <div className={styles.container}>
       <Navbar />
+      <CustomSnackbar
+        open={snackbarOpen}
+        onClose={handleSnackbarClose}
+        message={snackbarMessage}
+        severity={snackbarSeverity}
+      />
       <div className={styles.wrapper}>
         <div className={styles.left}>
-          <div className={styles.productSmallImages}>
+          <div className={styles.productBigImage}>
             {products.varients.map((item, index1) =>
               item.types.map((item1, index2) =>
-                item1.images.subImages.map((subimages) => (
-                  index1 === selectedVarient && index2 === selectedColor ?
-                  <div>
-                    <Image
-                      className={styles.smallImage}
-                      src={subimages.image}
-                      alt="image"
-                      width={80}
-                      height={80}
-                    />
-                  </div>
-                  : ""
-                ))
+                item.id == selectedVarient && item1.id == selectedColor ? (
+                  <Image
+                    className={styles.bigImage}
+                    src={selectedImage != null ? selectedImage : item1.images.mainImage}
+                    alt="image"
+                    width={400}
+                    height={400}
+                  />
+                ) : (
+                  ""
+                )
               )
             )}
           </div>
-          <div className={styles.productBigImage}>
+          <div className={styles.productSmallImages}>
             {products.varients.map((item, index1) =>
-              item.types.map((item1, index2) => (
-                index1 === selectedVarient && index2 === selectedColor ?
-                <Image
-                  className={styles.bigImage}
-                  src={item1.images.mainImage}
-                  alt="image"
-                  width={500}
-                  height={500}
-                />
-                :""
-              ))
+              item.types.map((item1, index2) =>
+                item1.images.subImages.map((subimages) => {
+                  console.log("item1", item1.images.mainImage);
+                  return item.id == selectedVarient &&
+                    item1.id == selectedColor ? (
+                    <div>
+                      <Image
+                        className={styles.smallImage}
+                        src={subimages.image}
+                        alt="image"
+                        width={80}
+                        height={80}
+                        onClick={() => setSelectedImage(subimages.image)}
+                      />
+                    </div>
+                  ) : (
+                    ""
+                  );
+                })
+              )
             )}
           </div>
         </div>
         <div className={styles.right}>
-          <div className={styles.titleWrapper}>
-            <h3>{products.name}</h3>
-          </div>
-
-          {products.varients.map((item, index) => (
-            index === selectedVarient ?
-            <div className={styles.descriptionWrapper}>
-              <p>{item.description}</p>
-              <h4>
-                Price : <span>{item.price}</span>
-              </h4>
-            </div>
-            :""
-          ))}
+          {products.varients.map((item, index) =>
+            item.id == selectedVarient ? (
+              <div className={styles.titleWrapper}>
+                <h3 className={styles.productName}>{item.name}</h3>
+                <div className={styles.brandWrapper}>
+                  <span className={styles.brandText}>Brand:</span>
+                  <div className={styles.brand}>{item.brand}</div>
+                </div>
+                <div className={styles.descriptionWrapper}>
+                  <p className={styles.productDescription}>
+                    {item.description}
+                  </p>
+                  <Rating
+                    name="read-only"
+                    className={styles.rating}
+                    value={item.rating}
+                    readOnly
+                  />
+                  <span className={styles.starRating}>{item.rating}*</span>
+                  <h4 className={styles.productPrice}>
+                    Price : <span>{item.price} ₹</span>
+                  </h4>
+                </div>
+              </div>
+            ) : (
+              ""
+            )
+          )}
           <h5 className={styles.selectText1}>Select variation</h5>
           <div className={styles.selectSizeWrapper}>
             {products.varients.map((item, index1) =>
               item.types.map((item1, index2) =>
-                item1.fields.map((item2, index3) => (
-                  <button onClick = {() => productUpdateSizeWise(index1, index2)} className={styles.variatonBtn}>{item2.value}</button>
-                ))
+                item1.fields.map(
+                  (item2) =>
+                    item.id == selectedVarient &&
+                    item1.id == selectedColor && (
+                      <button
+                        onClick={() =>
+                          productUpdateSizeWise(
+                            item.id,
+                            item1.id,
+                            item1.images.mainImage
+                          )
+                        }
+                        className={styles.variatonBtn}
+                      >
+                        {item2.value}
+                      </button>
+                    )
+                )
               )
             )}
           </div>
-          <h5>Colors Available</h5>
+          <h5 className={styles.productColor}>Colors Available</h5>
           <div className={styles.colorWrapper}>
             {products.varients.map((item, index1) =>
               item.types.map((item1, index2) => (
                 <button
-                  onClick={() => productUpdateColorWise(index1, index2)}
+                  onClick={() =>
+                    productUpdateColorWise(
+                      item.id,
+                      item1.id,
+                      item1.images.mainImage
+                    )
+                  }
                   key={products.id}
                   className={styles.btnImages}
-                  style={{ backgroundColor: item1.images.color }}
+                  style={{
+                    backgroundColor: item1.images.color,
+                    border:
+                      selectedColorBtn == item1.id ? "3px solid #3f51b5" : "",
+                  }}
                 ></button>
               ))
             )}
@@ -168,7 +277,10 @@ export default function FashionProductDetail({ products }) {
             >
               ADD TO CART
             </button>
-            <button className={styles.whishList} onClick = {() => addToWhishlist(products.id)}>
+            <button
+              className={styles.whishList}
+              onClick={() => addToWhishlist(products.id)}
+            >
               Whishlist <FavoriteBorderIcon />
             </button>
           </div>
@@ -197,11 +309,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { fashionproductdetail } = params;
+  const { fashionproductdetail, variantId, typeId } = params;
 
   const res = await axios.get(
-    `http://localhost:8000/fashionproduct/fashionproductdetail/${fashionproductdetail}/`
+    `http://localhost:8000/fashionproduct/fashionproductdetail/${fashionproductdetail}?variantId=${variantId}&typeId=${typeId}`
   );
+
   const products = res.data;
   console.log(products);
   return {

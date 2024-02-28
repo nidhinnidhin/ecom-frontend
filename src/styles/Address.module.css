@@ -1,0 +1,42 @@
+.container{
+    height: 100vh;
+    width: 100%;
+    background-color: #fbf8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper{
+    border: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.title{ 
+    font-size: 24px;
+    font-weight: 500;
+    color: rgb(121, 118, 118);
+}
+.titlewrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+}
+.addresBtn{
+    border: 1px solid gray;
+    background-color: rgb(69, 141, 43);
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 5px;
+    margin: 0px 10px;
+}
+.label{
+    margin-left: 10px;
+    color: gray;
+}

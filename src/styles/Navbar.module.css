@@ -1,24 +1,115 @@
-#container {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: #fff;
-  padding: 20px;
-}
+
 .nav {
-  background-color: #fff;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
-.logo{
-  margin: 0px 10px;
+.navbar{
+  background-color: #fff;
+  color: black;
 }
 .search{
-  background-color: rgb(184, 181, 181);
-  color: white;
+  background-color: #f8f8f8;
+  color: gray;
 }
-.search:hover{
-  background-color: rgb(74, 73, 73);
-  color: #fff;
+#search_input:focus {
+  border: 1px solid #91def8;
+  border-radius: 10px;
+}
+.logo{
+  object-fit: cover;
+}
+.pageWraper{
+  width: 100%;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.imageWrapper{
+  display: flex;
+  justify-content: center;
+}
+.image{
+  cursor: pointer;
+}
+.mainImage{
+object-fit: contain;
+margin-top: 5px;
+}
+.pageTitleContainer{
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+}
+.profileMenu{
+  height: 5px;
+}
+#cardDescription{
+  height: 50px;
+  overflow: hidden;
+  font-size: 12px;
+}
+#pageCard{
+  width: 222px;
+  margin: 15px 0px;
+}
+#pageCard:hover{
+  transform: scale(1.05);
+}
+.image{
+  object-fit: contain;
+}
+@media screen and (max-width: 768px) {
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+  }
+}
+@media screen and (max-width: 768px) {
+  #pageCard {
+    width: 47%;
+    margin: 5px 5px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .mainImage {
+    width: 90%;
+    height: 160px;
+    margin-top: 5px;
+    object-fit: contain;
+  }
+}
+@media screen and (max-width: 768px) {
+  #cardTitle {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 768px) {
+  #cardDescription{
+    font-size: 8px;
+  }
+}
+@media screen and (max-width: 768px) {
+  #cardPrice{
+    font-size: 8px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .title{
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .pageTitleContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+@media screen and (max-width: 768px) {
+  .userProfile{
+    margin-top: 15px;
+  }
 }

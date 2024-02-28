@@ -6,22 +6,20 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function FashionProducts({ datass }) {
   const router = useRouter();
   const FashionProducts = () => {
-    router.push("/fashion-product-page")
-  }
-  const reDirect = () => {
-    router.push("/fashion-product-page")
-  }
+    router.push("/fashion-product-page");
+  };
   return (
     <div className={styles.container}>
       <div className={styles.fasionProducts}>
-      <div className={styles.nextBtnWrapper}>
-        <h3>Fashion Produts</h3>
-        <button className={styles.nextBtn} onClick={FashionProducts}> 
+        <div className={styles.nextBtnWrapper}>
+          <h3 className={styles.productTitle}>PRODUCTS</h3>
+          <button className={styles.nextBtn} onClick={FashionProducts}>
             <NavigateNextIcon />
           </button>
         </div>
@@ -29,21 +27,35 @@ export default function FashionProducts({ datass }) {
           {datass?.length === 0 ? (
             <div>No data</div>
           ) : (
-            datass?.map((data) => (
-              <Card className={styles.card} sx={{ maxWidth: 345 }}>
+            datass.slice(6)?.map((data) => (
+              <Card
+                key={data.id}
+                className={styles.card}
+                sx={{ maxWidth: 345 }}
+              >
                 <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    height="140"
-                    image={data.image}
-                    alt="image"
-                    onClick={reDirect}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                  <Link href={`categoryproduct/${data.id}/`}>
+                    <CardMedia
+                      component="img"
+                      image={data.image}
+                      alt="image"
+                      className={styles.productImage}
+                    />
+                  </Link>
+                  <CardContent className={styles.cardContent}>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="div"
+                      className={styles.productName}
+                    >
                       {data.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography
+                      variant="body2"
+                      color="green"
+                      className={styles.productDiscount}
+                    >
                       {data.discount}
                     </Typography>
                   </CardContent>

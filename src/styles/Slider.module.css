@@ -1,8 +1,25 @@
-.container{
-    display: flex;
-    justify-content: center;
+.container {
+  display: flex;
+  justify-content: center;
 }
 
-.slider{
-    width: 95%;
+.slider {
+  width: 95%;
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image{
+  width: 100%;
+  object-fit: cover;
+}
+.image:hover{
+  transform: scale(1.05);
+}
+@media screen and (max-width: 450px) {
+  .slider {
+    width: 85%;
+    margin: 5px 0px;
+  }
 }

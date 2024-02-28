@@ -1,25 +1,46 @@
 import React, { Component } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useState, useEffect } from "react";
 import styles from "@/styles/Slider.module.css";
-import Image from "next/image";
+import Link from "next/link";
 
 export default function SliderItems({ datass }) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % datass.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [datass]);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    beforeChange: (current, next) => setCurrentSlide(next),
+  };
   return (
     <div className={styles.container}>
-      <div className={styles.slider}>
-        <Carousel>
-          {datass?.length === 0 ? (
-            <div>Loading...</div>
-          ) : (
-            datass?.map((data) => (
-              <div>
-                <Image src={data.image} alt="image" height={250} width={1000} style={{objectFit:"cover"}}/>
-              </div>
-            ))
-          )}
-        </Carousel>
-      </div>
+      <Slider {...settings} className={styles.slider}>
+        {datass?.map((data, index) => (
+          <div key={index}>
+            <Link href="/fashion-product-page">
+              <img
+                className={styles.image}
+                src={data.image}
+                alt={`Slide ${index + 1}`}
+              />
+            </Link>
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 }

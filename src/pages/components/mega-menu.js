@@ -9,17 +9,18 @@ export default function MegaMenu({ datass }) {
         {datass?.length === 0 ? (
           <div>Loading...</div>
         ) : (
-          datass?.map((data) => (
+          datass.slice(0,6)?.map((data) => (
             <div key={data.id} className={styles.wrapper}>
               <Link href = {`categoryproduct/${data.id}/`}>
               <Image
+              className={styles.productImage}
                 src={data.image}
                 alt="image"
                 width={80}
                 height={80}
               />
               </Link>
-              <span>{data.name}</span>
+              <span className={styles.productName}>{data.name}</span>
             </div>
           ))
         )}
