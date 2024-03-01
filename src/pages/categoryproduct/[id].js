@@ -1,6 +1,6 @@
 import * as React from "react";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -128,8 +128,8 @@ export default function CategoryProductsList() {
       <div className={styles.pageContainer}>
         <Navbar />
         <div className={styles.pageTitleContainer}>
-          {filteredProducts.map((items) => (
-            <h3 className={styles.title}>{items.category.name}</h3>
+          {filteredProducts.map((items, index) => (
+            <h3 key={index} className={styles.title}>{items.category.name}</h3>
           ))}
           <select
             value={selectedPriceRange}
@@ -150,7 +150,7 @@ export default function CategoryProductsList() {
                 item.types.map((item1) => {
                   console.log(item1);
                   return (
-                    <div class="card" id={styles.pageCard} key={item1.id}>
+                    <div key={item.id} class="card" id={styles.pageCard}>
                       <Link href={`/fashionproduct/${product.id}?variantId=${item.id}&typeId=${item1.id}`}>
                         <Image
                           src={`${beDomain}${item1.images.mainImage}`}
@@ -181,15 +181,18 @@ export default function CategoryProductsList() {
                       </div>
                     </div>
                   );
+                
                 })
               )
             )}
+            
           </div>
         ) : (
           <div className={styles.noProducts}>
             <h5>No products available</h5>
           </div>
         )}
+        
         <div className={styles.pagination}>
           <Pagination
             count={Math.ceil(filteredProducts.length / productsPerPage)}

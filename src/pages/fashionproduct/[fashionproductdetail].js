@@ -1,5 +1,5 @@
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
 import styles from "@/styles/Detail.module.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import axios from "axios";
@@ -156,6 +156,7 @@ export default function FashionProductDetail({ products }) {
               item.types.map((item1, index2) =>
                 item.id == selectedVarient && item1.id == selectedColor ? (
                   <Image
+                    key={item.id}
                     className={styles.bigImage}
                     src={selectedImage != null ? selectedImage : item1.images.mainImage}
                     alt="image"
@@ -175,7 +176,7 @@ export default function FashionProductDetail({ products }) {
                   console.log("item1", item1.images.mainImage);
                   return item.id == selectedVarient &&
                     item1.id == selectedColor ? (
-                    <div>
+                    <div key={item.id}>
                       <Image
                         className={styles.smallImage}
                         src={subimages.image}
@@ -196,7 +197,7 @@ export default function FashionProductDetail({ products }) {
         <div className={styles.right}>
           {products.varients.map((item, index) =>
             item.id == selectedVarient ? (
-              <div className={styles.titleWrapper}>
+              <div key={item.id} className={styles.titleWrapper}>
                 <h3 className={styles.productName}>{item.name}</h3>
                 <div className={styles.brandWrapper}>
                   <span className={styles.brandText}>Brand:</span>
@@ -231,6 +232,7 @@ export default function FashionProductDetail({ products }) {
                     item.id == selectedVarient &&
                     item1.id == selectedColor && (
                       <button
+                      key={item.id}
                         onClick={() =>
                           productUpdateSizeWise(
                             item.id,

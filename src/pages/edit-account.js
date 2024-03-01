@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import CustomSnackbar from "../pages/customSnackbar";
-import RegisterPopUp from "./components/register-popup";
+import RegisterPopUp from "../components/register-popup";
 
 export default function EditAccount() {
   const router = useRouter();

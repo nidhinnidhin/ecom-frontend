@@ -1,6 +1,6 @@
 import * as React from "react";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 import styles from "@/styles/Cart.module.css";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -36,7 +36,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import RegisterPopUp from "./components/register-popup";
+import RegisterPopUp from "../components/register-popup";
 
 const style = {
   position: "absolute",
@@ -454,7 +454,7 @@ export default function Cart() {
                   shipping_cost += total / 20;
                   grand_total += total + tax - discount + shipping_cost;
                   return (
-                    <div className={styles.productContainer}>
+                    <div key={item.id} className={styles.productContainer}>
                       <div className={styles.productWrapper}>
                         <div className={styles.imageWrapper}>
                           <Link

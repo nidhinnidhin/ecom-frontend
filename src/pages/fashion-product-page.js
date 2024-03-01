@@ -1,5 +1,5 @@
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 import styles from "@/styles/FashionProducts.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -148,7 +148,7 @@ export default function FashionProductPage({ posts }) {
             {currentProducts?.map((product, index) =>
               product.varients.map((item) =>
                 item.types.map((item1) => (
-                  <div class="card" id={styles.pageCard}>
+                  <div key={product.id} class="card" id={styles.pageCard}>
                     <Link
                       href={`/fashionproduct/${product.id}?variantId=${item.id}&typeId=${item1.id}`}
                     >

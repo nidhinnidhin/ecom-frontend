@@ -109,7 +109,7 @@ export default function ForgetPassword() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <div id="emailHelp" class="form-text">
-                We'll never share your email with anyone else.
+                We l never share your email with anyone else.
               </div>
             </div>
             <div class="d-flex justify-content-center">

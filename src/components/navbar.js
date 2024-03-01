@@ -16,11 +16,11 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import styles from "@/styles/Navbar.module.css";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCartCount } from "../../utils/cartUtils";
+import { fetchCartCount } from "../utils/cartUtils";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import logo from "../../static/images/removed-logo.png";
+import logo from "../static/images/removed-logo.png";
 import Link from "next/link";
 import {
   Button,
@@ -261,7 +261,7 @@ export default function Navbar() {
           {products?.map((product, index) =>
             product.varients.map((item) =>
               item.types.map((item1) => (
-                <div class="card" id={styles.pageCard}>
+                <div key={product.id} class="card" id={styles.pageCard}>
                   <Link
                     href={`/fashionproduct/${product.id}?variantId=${item.id}&typeId=${item1.id}`}
                   >

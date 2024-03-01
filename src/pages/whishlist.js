@@ -1,12 +1,12 @@
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 import styles from "@/styles/Whishlist.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import RegisterPopUp from "./components/register-popup";
+import RegisterPopUp from "../components/register-popup";
 
 export default function Whishlist() {
   const [whishlist, setWhishlist] = useState([]);
@@ -68,7 +68,7 @@ export default function Whishlist() {
                 item.varient.types.map((item1) => {
                   console.log(item);
                   return (
-                    <div class="card" id={styles.pageCard}>
+                    <div key={item.id} class="card" id={styles.pageCard}>
                       <div onClick={() => deleteWhishlist(item.id)}>
                         <FavoriteIcon className={styles.like} />
                       </div>

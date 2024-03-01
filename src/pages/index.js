@@ -1,12 +1,12 @@
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import Navbar from './components/navbar';
-import MegaMenu from './components/mega-menu';
-import SliderItems from './components/slider';
-import FashionProducts from './components/fashion-products';
-import Footer from './components/footer';
+import Navbar from '../components/navbar';
+import MegaMenu from '../components/mega-menu';
+import SliderItems from '../components/slider';
+import FashionProducts from '../components/fashion-products';
+import Footer from '../components/footer';
 import { useEffect } from 'react';
-import RegisterPopUp from './components/register-popup';
+import RegisterPopUp from '../components/register-popup';
 
 const inter = Inter({ subsets: ['latin'] })
 

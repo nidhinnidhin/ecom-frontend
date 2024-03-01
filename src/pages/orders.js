@@ -7,13 +7,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styles from "@/styles/Orders.module.css";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import RegisterPopUp from "./components/register-popup";
+import RegisterPopUp from "../components/register-popup";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -61,7 +61,7 @@ export default function Orders() {
               {datas.map((data) =>
                 data.varient.types.map((data1) => {
                   return (
-                    <TableBody>
+                    <TableBody key={data.id}>
                       <TableRow
                         sx={{
                           "&:last-child td, &:last-child th": { border: 0 },
