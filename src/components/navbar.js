@@ -330,7 +330,7 @@ export default function Navbar() {
                 aria-controls={menuId}
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
-                color="inherit"
+                color="black"
               >
                 <AccountCircle />
               </IconButton>
@@ -342,7 +342,7 @@ export default function Navbar() {
                 aria-controls={mobileMenuId}
                 aria-haspopup="true"
                 onClick={handleMobileMenuOpen}
-                color="inherit"
+                color="black"
               >
                 <MoreIcon />
               </IconButton>
