@@ -5,7 +5,7 @@
   z-index: 1000;
 }
 .navbar{
-  background-color: #fff;
+  background-color: #fff !important;
   color: black;
 }
 .search{
@@ -71,6 +71,12 @@ margin-top: 5px;
   #pageCard {
     width: 47%;
     margin: 5px 5px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .navbar{
+    background-color: #fff !important;
+    color: black;
   }
 }
 @media screen and (max-width: 768px) {

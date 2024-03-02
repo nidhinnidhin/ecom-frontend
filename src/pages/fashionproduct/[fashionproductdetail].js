@@ -28,12 +28,11 @@ export default function FashionProductDetail({ products }) {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const [selectedColorBtn, setselectedColorBtn] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
-  
-  
+
   const router = useRouter();
   const { variantId, typeId } = router.query;
   console.log(variantId, typeId);
-  
+
   useEffect(() => {
     if (variantId) {
       setSelectedVarient(variantId);
@@ -43,7 +42,7 @@ export default function FashionProductDetail({ products }) {
       setselectedColorBtn(typeId);
     }
   }, [variantId, typeId]);
-  
+
   const handleSnackbarClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -56,8 +55,8 @@ export default function FashionProductDetail({ products }) {
   };
 
   const addProductToCart = (id, products) => {
-    let varientid = selectedVarient
-    let typeid = selectedColor
+    let varientid = selectedVarient;
+    let typeid = selectedColor;
     axios
       .post(
         "http://13.235.209.32/cart/",
@@ -89,10 +88,10 @@ export default function FashionProductDetail({ products }) {
       });
   };
   const addToWhishlist = (id) => {
-    let varientid = selectedVarient
-    let typeid = selectedColor
+    let varientid = selectedVarient;
+    let typeid = selectedColor;
     const accessToken = localStorage.getItem("access_token");
-    if(!accessToken){
+    if (!accessToken) {
       setSnackbarSeverity("error");
       setSnackbarMessage("Login, if you are not loged in!");
       setSnackbarOpen(true);
@@ -138,7 +137,13 @@ export default function FashionProductDetail({ products }) {
     setSelectedImage(image);
     setselectedColorBtn(varientId);
   };
-  
+  const filteredSubImages = products.varients
+    .filter((item) => item.id == selectedVarient)
+    .flatMap((item) =>
+      item.types
+        .filter((type) => type.id == selectedColor)
+        .flatMap((type) => type.images.subImages)
+    );
 
   return (
     <div className={styles.container}>
@@ -158,7 +163,11 @@ export default function FashionProductDetail({ products }) {
                   <Image
                     key={item.id}
                     className={styles.bigImage}
-                    src={selectedImage != null ? selectedImage : item1.images.mainImage}
+                    src={
+                      selectedImage != null
+                        ? selectedImage
+                        : item1.images.mainImage
+                    }
                     alt="image"
                     width={400}
                     height={400}
@@ -170,28 +179,18 @@ export default function FashionProductDetail({ products }) {
             )}
           </div>
           <div className={styles.productSmallImages}>
-            {products.varients.map((item, index1) =>
-              item.types.map((item1, index2) =>
-                item1.images.subImages.map((subimages) => {
-                  console.log("item1", item1.images.mainImage);
-                  return item.id == selectedVarient &&
-                    item1.id == selectedColor ? (
-                    <div key={item.id}>
-                      <Image
-                        className={styles.smallImage}
-                        src={subimages.image}
-                        alt="image"
-                        width={80}
-                        height={80}
-                        onClick={() => setSelectedImage(subimages.image)}
-                      />
-                    </div>
-                  ) : (
-                    ""
-                  );
-                })
-              )
-            )}
+            {filteredSubImages.map((subimages) => (
+              <div key={subimages.id}>
+                <Image
+                  className={styles.smallImage}
+                  src={subimages.image}
+                  alt="image"
+                  width={80}
+                  height={80}
+                  onClick={() => setSelectedImage(subimages.image)}
+                />
+              </div>
+            ))}
           </div>
         </div>
         <div className={styles.right}>
@@ -232,7 +231,7 @@ export default function FashionProductDetail({ products }) {
                     item.id == selectedVarient &&
                     item1.id == selectedColor && (
                       <button
-                      key={item.id}
+                        key={item.id}
                         onClick={() =>
                           productUpdateSizeWise(
                             item.id,

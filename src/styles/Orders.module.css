@@ -8,7 +8,7 @@
     width: 90%;
 }
 .status{
-    color: green;
+    color: green !important;
 }
 .titleWrapper{
     display: flex;
