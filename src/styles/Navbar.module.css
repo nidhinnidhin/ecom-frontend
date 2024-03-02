@@ -4,10 +4,10 @@
   top: 0;
   z-index: 1000;
 }
-.navbar{
+/* .navbar{
   background-color: #fff !important;
   color: black;
-}
+} */
 .search{
   background-color: #f8f8f8;
   color: gray;
@@ -73,12 +73,12 @@ margin-top: 5px;
     margin: 5px 5px;
   }
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .navbar{
     background-color: #fff !important;
     color: black;
   }
-}
+} */
 @media screen and (max-width: 768px) {
   .mainImage {
     width: 90%;

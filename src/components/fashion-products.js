@@ -38,6 +38,7 @@ export default function FashionProducts({ datass }) {
                     <CardMedia
                       component="img"
                       image={data.image}
+                      style={{height:"90px",objectFit:"contain"}}
                       alt="image"
                       className={styles.productImage}
                     />
@@ -45,8 +46,9 @@ export default function FashionProducts({ datass }) {
                   <CardContent className={styles.cardContent}>
                     <Typography
                       gutterBottom
-                      variant="h5"
+                      variant="h6"
                       component="div"
+                      style={{fontSize:"14px"}}
                       className={styles.productName}
                     >
                       {data.name}

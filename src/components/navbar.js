@@ -298,7 +298,7 @@ export default function Navbar() {
   return (
     <>
       <Box className={styles.nav} sx={{ flexGrow: 1 }}>
-        <AppBar className={styles.navbar} position="static">
+        <AppBar className={styles.navbar} style={{color:"black", background:"#fff"}} position="static">
           <Toolbar>
             <Link href="/">
               <Image

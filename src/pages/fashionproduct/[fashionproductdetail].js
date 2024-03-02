@@ -207,6 +207,7 @@ export default function FashionProductDetail({ products }) {
                     {item.description}
                   </p>
                   <Rating
+                    style={{fontSize:"14px"}}
                     name="read-only"
                     className={styles.rating}
                     value={item.rating}
