@@ -15,7 +15,7 @@ export default function Whishlist() {
     const accessToken = localStorage.getItem("access_token")
     if (accessToken) {
       axios
-        .get("http://localhost:8000/whishlist/whishlist/", {
+        .get("http://13.235.209.32/whishlist/whishlist/", {
           headers: {
             Authorization: `Bearer ` + localStorage.getItem("access_token"),
             "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export default function Whishlist() {
 
   const deleteWhishlist = (id) => {
     axios
-      .delete(`http://localhost:8000/whishlist/delete-wishlist/${id}/`, {
+      .delete(`http://13.235.209.32/whishlist/delete-wishlist/${id}/`, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("access_token"),
           "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export default function Whishlist() {
       })
       .then(() => {
         axios
-          .get("http://localhost:8000/whishlist/whishlist/", {
+          .get("http://13.235.209.32/whishlist/whishlist/", {
             headers: {
               Authorization: `Bearer ` + localStorage.getItem("access_token"),
               "Content-Type": "application/json",

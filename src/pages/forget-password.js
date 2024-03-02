@@ -28,7 +28,7 @@ export default function ForgetPassword() {
   };
   const resetPassword = () => {
     axios
-      .post(`http://localhost:8000/account/reset-password/`, {
+      .post(`http://13.235.209.32/account/reset-password/`, {
         otp: otp,
         email: email,
         password1: password,
@@ -50,7 +50,7 @@ export default function ForgetPassword() {
 
   const generateOtp = () => {
     axios
-      .post(`http://localhost:8000/account/generate-otp/`, {
+      .post(`http://13.235.209.32/account/generate-otp/`, {
         email: email,
       })
       .then((res) => {
@@ -68,7 +68,7 @@ export default function ForgetPassword() {
   };
   const resendOtp = () => {
     axios
-      .post(`http://localhost:8000/account/generate-otp/`, {
+      .post(`http://13.235.209.32/account/generate-otp/`, {
         email: email,
       })
       .then((res) => {

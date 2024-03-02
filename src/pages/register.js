@@ -42,8 +42,6 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export default function Register() {
@@ -147,7 +145,7 @@ export default function Register() {
       };
 
       axios
-        .post("http://localhost:8000/account/register/", datas, {
+        .post("http://13.235.209.32/account/register/", datas, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -160,7 +158,7 @@ export default function Register() {
             password: password,
           };
           axios
-            .post("http://localhost:8000/api/login/", data)
+            .post("http://13.235.209.32/api/login/", data)
             .then((res) => {
               console.log("token");
               console.log(res.data.access);

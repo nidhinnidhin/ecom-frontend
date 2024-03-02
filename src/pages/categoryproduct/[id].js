@@ -66,7 +66,7 @@ export default function CategoryProductsList() {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 2;
 
-  const beDomain = "http://localhost:8000";
+  const beDomain = "http://13.235.209.32";
 
   useEffect(() => {
     const fetchProductsByCategory = async () => {

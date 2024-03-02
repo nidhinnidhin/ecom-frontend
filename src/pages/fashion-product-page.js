@@ -53,7 +53,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export async function getServerSideProps(context) {
   const res = await fetch(
-    "http://localhost:8000/fashionproduct/fashionproductlist/"
+    "http://13.235.209.32/fashionproduct/fashionproductlist/"
   );
   const datas = await res.json();
 
@@ -106,7 +106,7 @@ export default function FashionProductPage({ posts }) {
     var searchValue = e.target.value.replace(/\s+/g, "+");
 
     axios
-      .get("http://localhost:8000/fashionproduct/search/?search=" + searchValue)
+      .get("http://13.235.209.32/fashionproduct/search/?search=" + searchValue)
       .then((res) => {
         setProducts(res.data);
         console.log(res.data);

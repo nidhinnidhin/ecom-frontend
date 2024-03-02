@@ -8,7 +8,7 @@ export default function EditEmailForm () {
 
   const handleSendOTP = async () => {
     try {
-      const response = await axios.post('http://localhost:8000/account/update-email-send-otp/', { email });
+      const response = await axios.post('http://13.235.209.32/account/update-email-send-otp/', { email });
       if (response.data.success) {
         setMessage('OTP sent successfully!');
       } else {

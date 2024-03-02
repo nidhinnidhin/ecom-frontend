@@ -15,7 +15,7 @@ export default function RegisterPopUp() {
       console.log("Access Token:", accessToken);
       setAccessToken(accessToken);
         axios
-          .get(`http://localhost:8000/account/account-detail/`, {
+          .get(`http://13.235.209.32/account/account-detail/`, {
             headers: {
               Authorization: `Bearer ` + localStorage.getItem("access_token"),
               "Content-Type": "application/json",

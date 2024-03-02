@@ -117,7 +117,7 @@ export default function Login() {
         password: password,
       };
       axios
-        .post("http://localhost:8000/api/login/", data)
+        .post("http://13.235.209.32/api/login/", data)
         .then((res) => {
           console.log(res.data);
           localStorage.setItem("access_token", res.data.access);

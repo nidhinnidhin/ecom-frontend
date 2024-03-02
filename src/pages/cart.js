@@ -172,7 +172,7 @@ export default function Cart() {
       };
       axios
         .post(
-          `http://localhost:8000/checkout/address-save/`,
+          `http://13.235.209.32/checkout/address-save/`,
           { address_data },
           {
             headers: {
@@ -215,7 +215,7 @@ export default function Cart() {
     const accessToken = localStorage.getItem("access_token")
     if (accessToken) {
       axios
-        .get("http://localhost:8000/cart/cartlist/", {
+        .get("http://13.235.209.32/cart/cartlist/", {
           headers: {
             Authorization: `Bearer ` + localStorage.getItem("access_token"),
             "Content-Type": "application/json",
@@ -235,7 +235,7 @@ export default function Cart() {
     const accessToken = localStorage.getItem("access_token")
     if (accessToken) {
       axios
-        .get("http://localhost:8000/address/address-list/", {
+        .get("http://13.235.209.32/address/address-list/", {
           headers: {
             Authorization: `Bearer ` + localStorage.getItem("access_token"),
             "Content-Type": "application/json",
@@ -254,7 +254,7 @@ export default function Cart() {
     const accessToken = localStorage.getItem("access_token")
     if (accessToken) {
       axios
-        .get(`http://localhost:8000/address/address-detail/`, {
+        .get(`http://13.235.209.32/address/address-detail/`, {
           headers: {
             Authorization: `Bearer ` + localStorage.getItem("access_token"),
             "Content-Type": "application/json",
@@ -277,7 +277,7 @@ export default function Cart() {
   const handleConfirmDelete = () => {
     const id = selectedItemId;
     axios
-      .delete(`http://localhost:8000/cart/cartdelete/${id}/`, {
+      .delete(`http://13.235.209.32/cart/cartdelete/${id}/`, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("access_token"),
           "Content-Type": "application/json",
@@ -287,7 +287,7 @@ export default function Cart() {
         console.log("deleted", res.data);
         dispatch(fetchCartCount());
         axios
-          .get(`http://localhost:8000/cart/cartlist/`, {
+          .get(`http://13.235.209.32/cart/cartlist/`, {
             headers: {
               Authorization: `Bearer ` + localStorage.getItem("access_token"),
               "Content-Type": "application/json",
@@ -310,7 +310,7 @@ export default function Cart() {
       is_increment: true,
     };
     axios
-      .post(`http://localhost:8000/cart/cart-count-update/`, incrementBody, {
+      .post(`http://13.235.209.32/cart/cart-count-update/`, incrementBody, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("access_token"),
           "Content-Type": "application/json",
@@ -329,7 +329,7 @@ export default function Cart() {
       is_increment: false,
     };
     axios
-      .post(`http://localhost:8000/cart/cart-count-update/`, decrementBody, {
+      .post(`http://13.235.209.32/cart/cart-count-update/`, decrementBody, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("access_token"),
           "Content-Type": "application/json",
@@ -344,7 +344,7 @@ export default function Cart() {
 
   const checkoutAllPrdoducts = () => {
     axios
-      .get("http://localhost:8000/checkout/test-checkout/", {
+      .get("http://13.235.209.32/checkout/test-checkout/", {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("access_token"),
           "Content-Type": "application/json",
@@ -383,7 +383,7 @@ export default function Cart() {
         console.log(result);
 
         axios
-          .get(`http://localhost:8000/checkout/cart-checkout/`, {
+          .get(`http://13.235.209.32/checkout/cart-checkout/`, {
             headers: {
               Authorization: `Bearer ` + localStorage.getItem("access_token"),
               "Content-Type": "application/json",

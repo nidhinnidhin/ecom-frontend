@@ -25,7 +25,7 @@ export default function EditAccount() {
     const accessToken = localStorage.getItem("access_token")
     if (accessToken) {
       axios
-        .get(`http://localhost:8000/account/account-detail/`, {
+        .get(`http://13.235.209.32/account/account-detail/`, {
           headers: {
             Authorization: `Bearer ` + localStorage.getItem("access_token"),
             "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export default function EditAccount() {
       userName: userName,
     };
     axios
-      .put(`http://localhost:8000/account/account-edit/`, datas, {
+      .put(`http://13.235.209.32/account/account-edit/`, datas, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("access_token"),
           "Content-Type": "application/json",

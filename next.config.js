@@ -7,6 +7,6 @@ module.exports = nextConfig
 
 module.exports = {
   images: {
-    domains: ['localhost'],
+    domains: ['13.235.209.32'],
   },
 };

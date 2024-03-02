@@ -60,7 +60,7 @@ export default function FashionProductDetail({ products }) {
     let typeid = selectedColor
     axios
       .post(
-        "http://localhost:8000/cart/",
+        "http://13.235.209.32/cart/",
         {
           product: id,
           count: 1,
@@ -101,7 +101,7 @@ export default function FashionProductDetail({ products }) {
     console.log(typeid);
     axios
       .post(
-        "http://localhost:8000/whishlist/",
+        "http://13.235.209.32/whishlist/",
         {
           product: id,
           varient: varientid,
@@ -296,7 +296,7 @@ export default function FashionProductDetail({ products }) {
 
 export async function getStaticPaths() {
   const res = await axios.get(
-    "http://localhost:8000/fashionproduct/fashionproductlist/"
+    "http://13.235.209.32/fashionproduct/fashionproductlist/"
   );
   const products = res.data;
 
@@ -314,7 +314,7 @@ export async function getStaticProps({ params }) {
   const { fashionproductdetail, variantId, typeId } = params;
 
   const res = await axios.get(
-    `http://localhost:8000/fashionproduct/fashionproductdetail/${fashionproductdetail}?variantId=${variantId}&typeId=${typeId}`
+    `http://13.235.209.32/fashionproduct/fashionproductdetail/${fashionproductdetail}?variantId=${variantId}&typeId=${typeId}`
   );
 
   const products = res.data;
