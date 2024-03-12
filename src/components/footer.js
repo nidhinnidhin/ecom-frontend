@@ -19,7 +19,7 @@ const Footer = () => {
         </div>
       </div>
       <div className={styles.footerCopyright}>
-        <p className={styles.bottomText}>&copy; 2024 Your E-commerce Store. All rights reserved.</p>
+        <p className={styles.bottomText}>&copy; 2024 Click Shop. All rights reserved.</p>
       </div>
     </footer>
     </>

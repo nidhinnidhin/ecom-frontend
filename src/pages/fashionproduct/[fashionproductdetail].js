@@ -15,6 +15,9 @@ import { useRouter } from "next/router";
 import { fetchCartCount } from "@/utils/cartUtils";
 import { useDispatch } from "react-redux";
 import Rating from "@mui/material/Rating";
+import { Button } from "@mui/material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 export default function FashionProductDetail({ products }) {
   const dispatch = useDispatch();
@@ -28,6 +31,19 @@ export default function FashionProductDetail({ products }) {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const [selectedColorBtn, setselectedColorBtn] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [startIndex, setStartIndex] = useState(0);
+
+  const handleNext = () => {
+    if (startIndex + 3 < filteredSubImages.length) {
+      setStartIndex(startIndex + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (startIndex > 0) {
+      setStartIndex(startIndex - 1);
+    }
+  };
 
   const router = useRouter();
   const { variantId, typeId } = router.query;
@@ -179,18 +195,22 @@ export default function FashionProductDetail({ products }) {
             )}
           </div>
           <div className={styles.productSmallImages}>
-            {filteredSubImages.map((subimages) => (
-              <div key={subimages.id}>
-                <Image
-                  className={styles.smallImage}
-                  src={subimages.image}
-                  alt="image"
-                  width={80}
-                  height={80}
-                  onClick={() => setSelectedImage(subimages.image)}
-                />
-              </div>
-            ))}
+            <ChevronLeftIcon onClick={handlePrevious} className={styles.navBtn}/>
+            {filteredSubImages
+              .slice(startIndex, startIndex + 3)
+              .map((subimages) => (
+                <div key={subimages.id}>
+                  <Image
+                    src={subimages.image}
+                    className={styles.smallImage}
+                    alt="image"
+                    width={80}
+                    height={80}
+                    onClick={() => setSelectedImage(subimages.image)}
+                  />
+                </div>
+              ))}
+            <ChevronRightIcon onClick={handleNext} className={styles.navBtn}/>
           </div>
         </div>
         <div className={styles.right}>
@@ -207,7 +227,7 @@ export default function FashionProductDetail({ products }) {
                     {item.description}
                   </p>
                   <Rating
-                    style={{fontSize:"14px"}}
+                    style={{ fontSize: "14px" }}
                     name="read-only"
                     className={styles.rating}
                     value={item.rating}

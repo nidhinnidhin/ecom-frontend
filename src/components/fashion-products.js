@@ -26,7 +26,7 @@ export default function FashionProducts({ datass }) {
         </div>
         <div className={styles.productsWrapper}>
           {datass?.length === 0 ? (
-            <div>No data</div>
+            <div>No Products</div>
           ) : (
             datass.slice(6)?.map((data) => (
               <Card

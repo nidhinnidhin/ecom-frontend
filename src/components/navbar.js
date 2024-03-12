@@ -290,6 +290,7 @@ export default function Navbar() {
               ))
             )
           )}
+          {products.length == 0 && <div style={{color:"gray", margin:"10px"}}><span style={{ margin:"10px"}}>No products belongs to this search</span></div>}
         </div>
       </div>
     );

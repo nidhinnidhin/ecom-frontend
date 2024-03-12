@@ -185,7 +185,6 @@ export default function FashionProductPage({ posts }) {
                       <p class="card-text" id={styles.cardDescription}>
                         {item.description}
                       </p>
-                      ...
                     </div>
                   </div>
                 ))
