@@ -207,6 +207,7 @@ export default function FashionProductDetail({ products }) {
                     width={80}
                     height={80}
                     onClick={() => setSelectedImage(subimages.image)}
+                    onMouseEnter={() => setSelectedImage(subimages.image)}
                   />
                 </div>
               ))}

@@ -11,6 +11,16 @@
     display: flex;
     flex-direction: column;
 }
+.zoomedArea {
+  position: absolute;
+  width: 100px; /* Adjust as needed */
+  height: 100px; /* Adjust as needed */
+  border: 1px solid black; /* Add border style as needed */
+  display: none;
+}
+.bigImageContainer:hover .zoomedArea {
+  display: block;
+}
 #cardDescription{
   height: 50px;
   overflow: hidden;
