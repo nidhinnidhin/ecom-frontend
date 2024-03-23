@@ -110,6 +110,10 @@ export default function CategoryProductsList() {
   const handlePriceRangeChange = (event) => {
     const range = event.target.value;
     setSelectedPriceRange(range);
+
+    if (!range) {
+      setFilteredProducts(products);
+    }
   };
 
   const handleChangePage = (event, page) => {

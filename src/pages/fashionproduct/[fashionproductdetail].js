@@ -151,7 +151,7 @@ export default function FashionProductDetail({ products }) {
     setSelectedVarient(varientId);
     setSelectedColor(typeId);
     setSelectedImage(image);
-    setselectedColorBtn(varientId);
+    setselectedColorBtn(typeId);
   };
   const filteredSubImages = products.varients
     .filter((item) => item.id == selectedVarient)
@@ -195,7 +195,12 @@ export default function FashionProductDetail({ products }) {
             )}
           </div>
           <div className={styles.productSmallImages}>
-            <ChevronLeftIcon onClick={handlePrevious} className={styles.navBtn}/>
+            <button className={styles.carouselBtn}>
+              <ChevronLeftIcon
+                onClick={handlePrevious}
+                className={styles.navBtn}
+              />
+            </button>
             {filteredSubImages
               .slice(startIndex, startIndex + 3)
               .map((subimages) => (
@@ -211,7 +216,12 @@ export default function FashionProductDetail({ products }) {
                   />
                 </div>
               ))}
-            <ChevronRightIcon onClick={handleNext} className={styles.navBtn}/>
+            <button className={styles.carouselBtn}>
+              <ChevronRightIcon
+                onClick={handleNext}
+                className={styles.navBtn}
+              />
+            </button>
           </div>
         </div>
         <div className={styles.right}>
@@ -244,54 +254,62 @@ export default function FashionProductDetail({ products }) {
               ""
             )
           )}
-          <h5 className={styles.selectText1}>Select variation</h5>
-          <div className={styles.selectSizeWrapper}>
-            {products.varients.map((item, index1) =>
-              item.types.map((item1, index2) =>
-                item1.fields.map(
-                  (item2) =>
-                    item.id == selectedVarient &&
-                    item1.id == selectedColor && (
-                      <button
-                        key={item.id}
-                        onClick={() =>
-                          productUpdateSizeWise(
-                            item.id,
-                            item1.id,
-                            item1.images.mainImage
-                          )
-                        }
-                        className={styles.variatonBtn}
-                      >
-                        {item2.value}
-                      </button>
-                    )
-                )
-              )
-            )}
-          </div>
-          <h5 className={styles.productColor}>Colors Available</h5>
-          <div className={styles.colorWrapper}>
-            {products.varients.map((item, index1) =>
-              item.types.map((item1, index2) => (
-                <button
-                  onClick={() =>
-                    productUpdateColorWise(
-                      item.id,
-                      item1.id,
-                      item1.images.mainImage
-                    )
-                  }
-                  key={products.id}
-                  className={styles.btnImages}
-                  style={{
-                    backgroundColor: item1.images.color,
-                    border:
-                      selectedColorBtn == item1.id ? "3px solid #3f51b5" : "",
-                  }}
-                ></button>
-              ))
-            )}
+          <div className={styles.variationWrap}>
+            <div className={styles.selectSizeWrap}>
+              <h5 className={styles.selectText1}>Select variation</h5>
+              <div className={styles.selectSizeWrapper}>
+                {products.varients
+                  .filter((item) => item.id == selectedVarient)
+                  .flatMap((item) =>
+                    item.types
+                      .filter((type) => type.id == selectedColor)
+                      .flatMap((type) =>
+                        type.fields.map((field) => (
+                          <button
+                            key={field.id}
+                            className={styles.variatonBtn}
+                            onClick={() =>
+                              productUpdateSizeWise(
+                                item.id,
+                                type.id,
+                                type.images.mainImage
+                              )
+                            }
+                          >
+                            {field.value}
+                          </button>
+                        ))
+                      )
+                  )}
+              </div>
+            </div>
+            <div className={styles.selectColorWrap}>
+              <h5 className={styles.productColor}>Colors Available</h5>
+              <div className={styles.colorWrapper}>
+                {products.varients.map((item, index1) =>
+                  item.types.map((item1, index2) => (
+                    <button
+                      onClick={() =>
+                        productUpdateColorWise(
+                          item.id,
+                          item1.id,
+                          item1.images.mainImage
+                        )
+                      }
+                      key={products.id}
+                      className={styles.btnImages}
+                      style={{
+                        backgroundColor: item1.images.color,
+                        border:
+                          selectedColorBtn == item1.id
+                            ? "3px solid #3f51b5"
+                            : "",
+                      }}
+                    ></button>
+                  ))
+                )}
+              </div>
+            </div>
           </div>
           <div className={styles.btnsWrapper}>
             <button

@@ -29,12 +29,12 @@ export default function FashionProducts({ datass }) {
             <div>No Products</div>
           ) : (
             datass.slice(6)?.map((data) => (
-              <Card
+              <div
                 key={data.id}
                 className={styles.card}
                 sx={{ maxWidth: 345 }}
               >
-                <CardActionArea style={{display:"flex",flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+                <CardActionArea style={{display:"flex",flexDirection:"column", height:"100%", justifyContent:"space-evenly", alignItems:"center"}}>
                   <Link href={`categoryproduct/${data.id}/`}>
                     <Image
                       alt="image"
@@ -64,7 +64,7 @@ export default function FashionProducts({ datass }) {
                     </Typography>
                   </CardContent>
                 </CardActionArea>
-              </Card>
+              </div>
             ))
           )}
         </div>

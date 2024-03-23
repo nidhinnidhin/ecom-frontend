@@ -84,7 +84,8 @@ export default function Orders() {
                         <TableCell align="left">
                           {data.varient.price * data.count} ₹
                         </TableCell>
-                        <TableCell align="left">{data.count} Qty</TableCell>
+                       
+                        <TableCell align="left"> <span>Qty</span>: {data.count}</TableCell>
                         <TableCell className={styles.status} align="right">
                           {data.delivery_status}
                         </TableCell>

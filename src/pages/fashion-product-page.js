@@ -80,12 +80,24 @@ export default function FashionProductPage({ posts }) {
     setCurrentPage(value);
   };
 
+  const fetchAllProducts = () => {
+    axios
+      .get("http://13.235.209.32/fashionproduct/fashionproductlist/")
+      .then((res) => {
+        setProducts(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching all products:", error);
+      });
+  };
+
   const handlePriceRangeChange = (event) => {
     const selectedPriceRange = event.target.value;
     setPriceRange(selectedPriceRange);
 
     if (selectedPriceRange === "") {
-      setProducts(products);
+      fetchAllProducts();
     } else {
       const [minPrice, maxPrice] = selectedPriceRange.split("-").map(Number);
       const filteredProducts = posts.filter((product) => {
@@ -166,9 +178,11 @@ export default function FashionProductPage({ posts }) {
                       <Link
                         href={`/fashionproduct/${product.id}?variantId=${item.id}&typeId=${item1.id}`}
                       >
-                        <span className={styles.availabeVariation}>{product.varients.length}+ Variations available</span>
+                        <span className={styles.availabeVariation}>
+                          {product.varients.length}+ Variations available
+                        </span>
                       </Link>
-                      
+
                       <h5 class="card-title" id={styles.cardTitle}>
                         {item.name}
                       </h5>
