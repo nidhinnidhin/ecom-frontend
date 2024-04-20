@@ -141,13 +141,11 @@ export default function FashionProductPage({ posts }) {
           <div>
             <h3 className={styles.title}>PRODUCTS</h3>
           </div>
-          <div className={styles.dropdownContainer}>
-            <select
-              value={priceRange}
+          <div>
+            <select class="form-select" aria-label="Default select example" value={priceRange}
               onChange={handlePriceRangeChange}
-              className={styles.dropdown}
-            >
-              <option value="">Filter by price</option>
+              className={styles.dropdown}>
+              <option selected>Filter by price range</option>
               <option value="100-500">100 to 500</option>
               <option value="500-1000">500 to 1000</option>
               <option value="10000-55000">10000 to 55000</option>

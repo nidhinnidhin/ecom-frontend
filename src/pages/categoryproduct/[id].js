@@ -133,19 +133,25 @@ export default function CategoryProductsList() {
         <Navbar />
         <div className={styles.pageTitleContainer}>
           {filteredProducts.map((items, index) => (
-            <h3 key={index} className={styles.title}>{items.category.name}</h3>
+            <h3 key={index} className={styles.title}>
+              {items.category.name}
+            </h3>
           ))}
-          <select
-            value={selectedPriceRange}
-            onChange={handlePriceRangeChange}
-            className={styles.dropdown}
-          >
-            <option value="">Filter by price</option>
-            <option value="100-1000">100 to 1000</option>
-            <option value="1000-10000">1000 to 10000</option>
-            <option value="10000-100000">10000 to 100000</option>
-            <option value="100000-500000">100000 to 500000</option>
-          </select>
+          <div>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              value={selectedPriceRange}
+              onChange={handlePriceRangeChange}
+              className={styles.dropdown}
+            >
+              <option selected>Filter by price range</option>
+              <option value="100-500">100 to 500</option>
+              <option value="500-1000">500 to 1000</option>
+              <option value="10000-55000">10000 to 55000</option>
+              <option value="100000-500000">100000 to 500000</option>
+            </select>
+          </div>
         </div>
         {currentProducts.length != 0 ? (
           <div className={styles.pageWraper}>
@@ -155,7 +161,9 @@ export default function CategoryProductsList() {
                   console.log(item1);
                   return (
                     <div key={item.id} class="card" id={styles.pageCard}>
-                      <Link href={`/fashionproduct/${product.id}?variantId=${item.id}&typeId=${item1.id}`}>
+                      <Link
+                        href={`/fashionproduct/${product.id}?variantId=${item.id}&typeId=${item1.id}`}
+                      >
                         <Image
                           src={`${beDomain}${item1.images.mainImage}`}
                           alt="image"
@@ -166,17 +174,24 @@ export default function CategoryProductsList() {
                       </Link>
                       <div class="card-body">
                         <div>
-                      <Link
-                          href={`/fashionproduct/${product.id}?variantId=${item.id}&typeId=${item1.id}`}
-                        >
-                          <span className={styles.availabeVariation}>
-                            {product.varients.length}+ Variations available
-                          </span>
-                        </Link>
+                          <Link
+                            href={`/fashionproduct/${product.id}?variantId=${item.id}&typeId=${item1.id}`}
+                          >
+                            <span className={styles.availabeVariation}>
+                              {product.varients.length}+ Variations available
+                            </span>
+                          </Link>
                         </div>
                         <h5 className={styles.name}>{item.name}</h5>
-                        <Rating name="read-only" className={styles.rating} value={item.rating} readOnly />
-                        <span className={styles.starRating}>{item.rating}*</span>
+                        <Rating
+                          name="read-only"
+                          className={styles.rating}
+                          value={item.rating}
+                          readOnly
+                        />
+                        <span className={styles.starRating}>
+                          {item.rating}*
+                        </span>
                         <p className={styles.price}>{item.price}</p>
                         <p id={styles.cardProductDescription} class="card-text">
                           {item.description}
@@ -185,18 +200,16 @@ export default function CategoryProductsList() {
                       </div>
                     </div>
                   );
-                
                 })
               )
             )}
-            
           </div>
         ) : (
           <div className={styles.noProducts}>
             <h5>No products available</h5>
           </div>
         )}
-        
+
         <div className={styles.pagination}>
           <Pagination
             count={Math.ceil(filteredProducts.length / productsPerPage)}
